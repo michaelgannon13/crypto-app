@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { GetPricesService } from './services/prices/get-prices.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,16 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'crypto-app';
+  prices: any;
+
+  constructor(private priceService: GetPricesService) { }
+
+
+  ngOnInit() {
+    this.priceService.getPrices()
+    .subscribe((res: any[]) => {
+      this.prices = res;
+      console.log(this.prices);
+    });
+  }
 }
