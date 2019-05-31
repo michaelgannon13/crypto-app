@@ -14,7 +14,7 @@ export class AppComponent {
 
 
   ngOnInit() {
-    this.priceService.getPrices()
+    this.priceService.getBTC()
     .subscribe((res: any[]) => {
       this.prices = res;
       console.log(this.prices);
