@@ -9,6 +9,10 @@ import { GetPricesService } from './services/prices/get-prices.service';
 export class AppComponent {
   title = 'crypto-app';
   prices: any;
+  btcName;
+  btcValue;
+  euroSymbol;
+  time;
 
   constructor(private priceService: GetPricesService) { }
 
@@ -17,6 +21,9 @@ export class AppComponent {
     this.priceService.getBTC()
     .subscribe((res: any[]) => {
       this.prices = res;
+      this.btcName = this.prices.data.coin.name;
+      this.btcValue = this.prices.data.coin.price;
+      this.euroSymbol = this.prices.data.base.sign;
       console.log(this.prices);
     });
   }
