@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { GetPricesService } from './services/prices/get-prices.service';
+import { CoinsService } from './services/coins/coins.service';
 
 @Component({
   selector: 'app-root',
@@ -13,9 +14,10 @@ export class AppComponent {
   btcValue;
   euroSymbol;
   time;
+  coinRes;
+  coins;
 
-  constructor(private priceService: GetPricesService) { }
-
+  constructor(private priceService: GetPricesService, private coinsService: CoinsService) { }
 
   ngOnInit() {
     this.priceService.getBTC()
@@ -24,7 +26,13 @@ export class AppComponent {
       this.btcName = this.prices.data.coin.name;
       this.btcValue = this.prices.data.coin.price;
       this.euroSymbol = this.prices.data.base.sign;
-      console.log(this.prices);
+    });
+
+    this.coinsService.getCoins()
+    .subscribe((res: any[]) => {
+      this.coinRes = res;
+      this.coins = this.coinRes.data.coins;
+      console.log(this.coins);
     });
   }
 }
