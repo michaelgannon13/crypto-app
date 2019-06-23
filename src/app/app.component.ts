@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { GetPricesService } from './services/prices/get-prices.service';
 import { CoinsService } from './services/coins/coins.service';
+import {FormControl, FormGroupDirective, FormGroup, NgForm, Validators} from '@angular/forms';
+
 
 @Component({
   selector: 'app-root',
@@ -35,4 +37,25 @@ export class AppComponent {
       console.log(this.coins);
     });
   }
+
+  myForm = new FormGroup({
+    coin: new FormControl('', [
+      Validators.required
+    ]),
+    date: new FormControl('', [
+      Validators.required,
+      Validators.minLength(2)
+    ]),
+    quantity: new FormControl('', [
+      Validators.required,
+    ]),
+  });
+
+  onSubmit(value: any) {
+      
+      console.log(value);
+      console.log(this.myForm.value);
+
+      
+    }
 }
