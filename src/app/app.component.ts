@@ -19,7 +19,10 @@ export class AppComponent {
   coinRes;
   coins;
 
-  constructor(private priceService: GetPricesService, private coinsService: CoinsService) { }
+  constructor(
+      private priceService: GetPricesService, 
+      private coinsService: CoinsService
+  ) { }
 
   ngOnInit() {
     this.priceService.getBTC()
