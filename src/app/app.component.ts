@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { GetPricesService } from './services/prices/get-prices.service';
 import { CoinsService } from './services/coins/coins.service';
-import {FormControl, FormGroupDirective, FormGroup, NgForm, Validators} from '@angular/forms';
-
 
 @Component({
   selector: 'app-root',
@@ -19,8 +17,19 @@ export class AppComponent {
   coinRes;
   coins;
 
+  autoTicks = false;
+  disabled = false;
+  invert = false;
+  max = 100;
+  min = 0;
+  showTicks = false;
+  step = 1;
+  thumbLabel = false;
+  value = 0;
+  vertical = false;
+
   constructor(
-      private priceService: GetPricesService, 
+      private priceService: GetPricesService,
       private coinsService: CoinsService
   ) { }
 
@@ -41,24 +50,15 @@ export class AppComponent {
     });
   }
 
-  myForm = new FormGroup({
-    coin: new FormControl('', [
-      Validators.required
-    ]),
-    date: new FormControl('', [
-      Validators.required,
-      Validators.minLength(2)
-    ]),
-    quantity: new FormControl('', [
-      Validators.required,
-    ]),
-  });
-
-  onSubmit(value: any) {
-      
-      console.log(value);
-      console.log(this.myForm.value);
-
-      
+  formatLabel(value: number | null) {
+    if (!value) {
+      return 0;
     }
+
+    if (value >= 1000) {
+      return Math.round(value / 1000) + 'k';
+    }
+
+    return value;
+  }
 }

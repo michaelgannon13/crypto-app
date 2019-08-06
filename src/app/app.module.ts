@@ -8,6 +8,9 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -24,7 +27,9 @@ import { AppComponent } from './app.component';
     BrowserAnimationsModule,
     MatSelectModule,
     MatDatepickerModule,
-    MatNativeDateModule ,
+    MatSliderModule,
+    MatNativeDateModule,
+    MatCheckboxModule,
     MatInputModule,
     ReactiveFormsModule,
     FormsModule

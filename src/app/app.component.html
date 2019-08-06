@@ -1,34 +1,32 @@
 <div class="container">
-  <form #UserLogin="ngForm" (ngSubmit)="onSubmit(UserLogin.value)" class="container__form">
     <div class="coin">
-      <mat-form-field formControlName="coin">
+      <mat-form-field>
         <mat-label>Pick a coin</mat-label>
         <mat-select>
-          <mat-option 
-            *ngFor="let coin of coins" 
+          <mat-option
+            *ngFor="let coin of coins"
             [value]="coin.name">
             {{coin.name}}
           </mat-option>
         </mat-select>
       </mat-form-field>
     </div>
-  
+
     <div class="date">
-      <mat-form-field formControlName="date">
+      <mat-form-field>
         <input matInput [matDatepicker]="picker" placeholder="Choose a date">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
     </div>
-  
+
     <div class="quantity">
       <mat-form-field class="example-full-width">
-        <input matInput placeholder="How much did you buy" value="" formControlName="quantity">
+        <input matInput placeholder="How much did you buy" value="">
       </mat-form-field>
     </div>
-    <button md-button type="button" class="submit-btn" type="submit" [disabled]="!UserLogin.form.valid">Login!</button>
-  </form>
+    <mat-slider></mat-slider>
 </div>
 
-  
+
 <router-outlet></router-outlet>
