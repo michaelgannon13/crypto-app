@@ -11,28 +11,28 @@ export class AppComponent {
   title = 'crypto-app';
   coinRes;
   coins;
-  selectedCoin;
-  selectedDate;
-  selectedQuantity;
+  selectedCoin = 'BTC';
+  selectedDate = '07/04/1990';
+  selectedQuantity = '0';
 
   constructor(
       private priceService: GetPricesService,
       private coinsService: CoinsService
   ) { }
 
-  selectCoin(selectedCoin) {
-    console.log('selection made', selectedCoin);
-    this.selectCoin = selectedCoin;
+  selectCoin(selectCoin) {
+    console.log('selection made', selectCoin);
+    this.selectedCoin = selectCoin;
   }
 
-  selectDate(selectedDate) {
-    console.log('selection made', selectedDate);
-    this.selectDate = selectedDate;
+  selectDate(selectDate) {
+    console.log('selection made', selectDate);
+    this.selectedDate = selectDate;
   }
 
-  selectQuantity(selectedQuantity) {
-    console.log('selection made', selectedQuantity);
-    this.selectedQuantity = selectedQuantity;
+  selectQuantity(selectQuantity) {
+    console.log('selection made', selectQuantity);
+    this.selectedQuantity = selectQuantity;
   }
 
   // tslint:disable-next-line:use-life-cycle-interface

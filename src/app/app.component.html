@@ -21,5 +21,8 @@
         (change)="selectQuantity($event.target.value)">
     </div>
     <button md-button type="button" class="submit-btn" type="submit">Calculate</button>
+    <p>
+      You bought {{selectedQuantity}} {{selectedCoin}} on {{selectedDate}}
+    </p>
 </div>
 <router-outlet></router-outlet>
