@@ -9,7 +9,10 @@
       </select>
     </div>
     <div class="date">
-        <input type="text" placeholder="what date">
+      <input
+        type="date"
+        placeholder="what date"
+        (change)="selectDate($event.target.value)">
     </div>
     <div class="quantity">
       <input type="text" placeholder="how many">

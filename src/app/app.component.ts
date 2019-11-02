@@ -9,14 +9,10 @@ import { CoinsService } from './services/coins/coins.service';
 })
 export class AppComponent {
   title = 'crypto-app';
-  prices: any;
-  btcName;
-  btcValue;
-  euroSymbol;
-  time;
   coinRes;
   coins;
   selectedCoin;
+  selectedDate;
 
   constructor(
       private priceService: GetPricesService,
@@ -26,6 +22,11 @@ export class AppComponent {
   selectCoin(selectedCoin) {
     console.log('selection made', selectedCoin);
     this.selectCoin = selectedCoin;
+  }
+
+  selectDate(selectedDate) {
+    console.log('selection made', selectedDate);
+    this.selectDate = selectedDate;
   }
 
   // tslint:disable-next-line:use-life-cycle-interface
