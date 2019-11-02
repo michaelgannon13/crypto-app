@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { GetPricesService } from './services/prices/get-prices.service';
 import { CoinsService } from './services/coins/coins.service';
-import {FormControl, FormGroupDirective, FormGroup, NgForm, Validators} from '@angular/forms';
-
 
 @Component({
   selector: 'app-root',
@@ -18,21 +16,20 @@ export class AppComponent {
   time;
   coinRes;
   coins;
+  selectedCoin;
 
   constructor(
-      private priceService: GetPricesService, 
+      private priceService: GetPricesService,
       private coinsService: CoinsService
   ) { }
 
-  ngOnInit() {
-    this.priceService.getBTC()
-    .subscribe((res: any[]) => {
-      this.prices = res;
-      this.btcName = this.prices.data.coin.name;
-      this.btcValue = this.prices.data.coin.price;
-      this.euroSymbol = this.prices.data.base.sign;
-    });
+  selectCoin(selectedCoin) {
+    console.log('selection made', selectedCoin);
+    this.selectCoin = selectedCoin;
+  }
 
+  // tslint:disable-next-line:use-life-cycle-interface
+  ngOnInit() {
     this.coinsService.getCoins()
     .subscribe((res: any[]) => {
       this.coinRes = res;
@@ -40,25 +37,4 @@ export class AppComponent {
       console.log(this.coins);
     });
   }
-
-  myForm = new FormGroup({
-    coin: new FormControl('', [
-      Validators.required
-    ]),
-    date: new FormControl('', [
-      Validators.required,
-      Validators.minLength(2)
-    ]),
-    quantity: new FormControl('', [
-      Validators.required,
-    ]),
-  });
-
-  onSubmit(value: any) {
-      
-      console.log(value);
-      console.log(this.myForm.value);
-
-      
-    }
 }
