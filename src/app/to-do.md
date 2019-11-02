@@ -1,10 +1,6 @@
-- decouple google material
-- rewrite html
-- work out requests and what i need
-- componentize
+- price for that coin on todays date
+- price for that coin on form data
 
+- find out the percentage difference between the two
 
-save coin id
-
-get coin data
-get coin value for todays date
+- add / subtract percentage difference from the price for that coin on form data date

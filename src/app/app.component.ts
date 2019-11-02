@@ -43,7 +43,6 @@ export class AppComponent {
       .subscribe((res: any[]) => {
         this.coinData = res;
         console.log(this.coinData);
-
       });
   }
 
