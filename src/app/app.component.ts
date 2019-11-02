@@ -12,6 +12,7 @@ export class AppComponent {
   coinRes;
   coins;
   selectedCoin = 'BTC';
+  selectedCoinId = 0;
   selectedDate = '07/04/1990';
   selectedQuantity = '0';
 
@@ -20,9 +21,10 @@ export class AppComponent {
       private coinsService: CoinsService
   ) { }
 
-  selectCoin(selectCoin) {
-    console.log('selection made', selectCoin);
+  selectCoin(selectCoin, selectCoinId) {
+    console.log('target value is ', selectCoin, selectCoinId);
     this.selectedCoin = selectCoin;
+    this.selectedCoinId = selectCoinId;
   }
 
   selectDate(selectDate) {
@@ -44,4 +46,12 @@ export class AppComponent {
       console.log(this.coins);
     });
   }
+
+  // this.priceService.getBTC()
+  // .subscribe((res: any[]) => {
+  //   this.prices = res;
+  //   this.btcName = this.prices.data.coin.name;
+  //   this.btcValue = this.prices.data.coin.price;
+  //   this.euroSymbol = this.prices.data.base.sign;
+  // });
 }
