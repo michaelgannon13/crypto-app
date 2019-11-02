@@ -13,6 +13,7 @@ export class AppComponent {
   coins;
   selectedCoin;
   selectedDate;
+  selectedQuantity;
 
   constructor(
       private priceService: GetPricesService,
@@ -27,6 +28,11 @@ export class AppComponent {
   selectDate(selectedDate) {
     console.log('selection made', selectedDate);
     this.selectDate = selectedDate;
+  }
+
+  selectQuantity(selectedQuantity) {
+    console.log('selection made', selectedQuantity);
+    this.selectedQuantity = selectedQuantity;
   }
 
   // tslint:disable-next-line:use-life-cycle-interface
