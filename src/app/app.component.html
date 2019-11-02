@@ -21,7 +21,7 @@
         placeholder="how many"
         (change)="selectQuantity($event.target.value)">
     </div>
-    <button md-button type="button" class="submit-btn" type="submit">Calculate</button>
+    <button md-button type="button" class="submit-btn" type="submit" (click)="calculate()">Calculate</button>
     <p>
       You bought {{selectedQuantity}} {{selectedCoin}} on {{selectedDate}}
     </p>

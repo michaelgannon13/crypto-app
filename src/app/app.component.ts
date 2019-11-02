@@ -15,6 +15,7 @@ export class AppComponent {
   selectedCoinId = 0;
   selectedDate = '07/04/1990';
   selectedQuantity = '0';
+  coinData;
 
   constructor(
       private priceService: GetPricesService,
@@ -37,6 +38,15 @@ export class AppComponent {
     this.selectedQuantity = selectQuantity;
   }
 
+  calculate() {
+    this.priceService.getCoinData(this.selectedCoinId)
+      .subscribe((res: any[]) => {
+        this.coinData = res;
+        console.log(this.coinData);
+
+      });
+  }
+
   // tslint:disable-next-line:use-life-cycle-interface
   ngOnInit() {
     this.coinsService.getCoins()
@@ -46,12 +56,4 @@ export class AppComponent {
       console.log(this.coins);
     });
   }
-
-  // this.priceService.getBTC()
-  // .subscribe((res: any[]) => {
-  //   this.prices = res;
-  //   this.btcName = this.prices.data.coin.name;
-  //   this.btcValue = this.prices.data.coin.price;
-  //   this.euroSymbol = this.prices.data.base.sign;
-  // });
 }
