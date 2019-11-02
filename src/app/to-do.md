@@ -1,7 +1,3 @@
-- search response object for todays date (timestamp)
-- find way of matching with todays date
-
-
 - price for that coin on todays date
 - price for that coin on form data
 
@@ -11,3 +7,5 @@
 
 
 // history starts from 5 years ago
+// last history array and propery is today's value
+// convert time stamp

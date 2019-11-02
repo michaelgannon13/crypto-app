@@ -17,6 +17,10 @@ export class AppComponent {
   selectedQuantity = '0';
   coinData;
 
+  coinPriceToday;
+  coinTimeToday;
+  selectedDateStamp;
+
   constructor(
       private priceService: GetPricesService,
       private coinsService: CoinsService
@@ -38,11 +42,25 @@ export class AppComponent {
     this.selectedQuantity = selectQuantity;
   }
 
+   toTimestamp(strDate){
+    const datum = Date.parse(strDate);
+    return datum / 1000;
+   }
+
   calculate() {
     this.priceService.getCoinData(this.selectedCoinId)
       .subscribe((res: any[]) => {
         this.coinData = res;
-        console.log(this.coinData);
+        // gets last item in last array
+        const lastItem = this.coinData.data.history.pop();
+        // gets last items price
+        this.coinPriceToday = lastItem.price;
+        // gets last items timestamp
+        this.coinTimeToday = lastItem.timestamp;
+        // coverts selected date to timestamp
+        this.selectedDateStamp = this.toTimestamp(this.selectedDate);
+
+        const allHistory = this.coinData.data.history;
       });
   }
 
