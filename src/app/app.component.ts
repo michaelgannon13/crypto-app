@@ -18,6 +18,7 @@ export class AppComponent {
   coinData;
 
   coinPriceToday;
+  coinPriceWhenPurchased;
   coinTimeToday;
   selectedDateStamp;
 
@@ -27,27 +28,25 @@ export class AppComponent {
   ) { }
 
   selectCoin(selectCoin, selectCoinId) {
-    console.log('target value is ', selectCoin, selectCoinId);
     this.selectedCoin = selectCoin;
     this.selectedCoinId = selectCoinId;
   }
 
   selectDate(selectDate) {
-    console.log('selection made', selectDate);
     this.selectedDate = selectDate;
   }
 
   selectQuantity(selectQuantity) {
-    console.log('selection made', selectQuantity);
     this.selectedQuantity = selectQuantity;
   }
 
-   toTimestamp(strDate){
+   toTimestamp(strDate) {
     const datum = Date.parse(strDate);
     return datum / 1000;
    }
 
   calculate() {
+
     this.priceService.getCoinData(this.selectedCoinId)
       .subscribe((res: any[]) => {
         this.coinData = res;
@@ -61,6 +60,23 @@ export class AppComponent {
         this.selectedDateStamp = this.toTimestamp(this.selectedDate);
 
         const allHistory = this.coinData.data.history;
+
+        // tslint:disable-next-line:forin
+        for (let key = 0; key < allHistory.length; key ++ ) {
+
+          let found;
+
+          if (allHistory[key].timestamp === this.selectedDateStamp * 1000) {
+            found = allHistory[key];
+
+            this.coinPriceWhenPurchased = found.price;
+
+            console.log('found is', found.timestamp, 'timestamp is', this.selectedDateStamp * 1000);
+            console.log('coin price at time of purchase ', this.coinPriceWhenPurchased);
+            console.log('coin price today ', this.coinPriceToday);
+          }
+        }
+
       });
   }
 
@@ -70,7 +86,7 @@ export class AppComponent {
     .subscribe((res: any[]) => {
       this.coinRes = res;
       this.coins = this.coinRes.data.coins;
-      console.log(this.coins);
+      // console.log(this.coins);
     });
   }
 }
