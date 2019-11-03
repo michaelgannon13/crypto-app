@@ -54,6 +54,8 @@ export class AppComponent {
 
    calculatePriceDifference(coinQuantity, purchasePrice, actualPrice) {
      const result = ((purchasePrice * coinQuantity) - (actualPrice * coinQuantity));
+     console.log(result);
+
      return result;
    }
 
