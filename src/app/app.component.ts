@@ -21,6 +21,8 @@ export class AppComponent {
   coinPriceWhenPurchased;
   coinTimeToday;
   selectedDateStamp;
+  percentageDifference;
+  priceResult;
 
   constructor(
       private priceService: GetPricesService,
@@ -40,9 +42,19 @@ export class AppComponent {
     this.selectedQuantity = selectQuantity;
   }
 
-   toTimestamp(strDate) {
+  toTimestamp(strDate) {
     const datum = Date.parse(strDate);
     return datum / 1000;
+   }
+
+   calculatePricePercentageDifference(purchasePrice, actualPrice) {
+     const diff = ((purchasePrice - actualPrice) / (purchasePrice)) * 100;
+     return diff;
+   }
+
+   calculatePriceDifference(coinQuantity, purchasePrice, actualPrice) {
+     const result = ((purchasePrice * coinQuantity) - (actualPrice * coinQuantity));
+     return result;
    }
 
   calculate() {
@@ -50,6 +62,8 @@ export class AppComponent {
     this.priceService.getCoinData(this.selectedCoinId)
       .subscribe((res: any[]) => {
         this.coinData = res;
+        console.log('coin data is ', this.coinData);
+
         // gets last item in last array
         const lastItem = this.coinData.data.history.pop();
         // gets last items price
@@ -61,7 +75,6 @@ export class AppComponent {
 
         const allHistory = this.coinData.data.history;
 
-        // tslint:disable-next-line:forin
         for (let key = 0; key < allHistory.length; key ++ ) {
 
           let found;
@@ -76,6 +89,12 @@ export class AppComponent {
             console.log('coin price today ', this.coinPriceToday);
           }
         }
+
+        this.percentageDifference = this.calculatePricePercentageDifference(this.coinPriceWhenPurchased, this.coinPriceToday);
+        console.log('percentage difference is ', this.percentageDifference);
+
+        this.priceResult = this.calculatePriceDifference(this.selectedQuantity, this.coinPriceWhenPurchased, this.coinPriceToday);
+        console.log('price difference is ', this.priceResult);
 
       });
   }
