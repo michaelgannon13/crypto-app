@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 export class GetPricesService {
 
   constructor(private http: HttpClient) { }
-  getBTC(){
-    return this.http.get('https://api.coinranking.com/v1/public/coin/1?base=EUR&timePeriod=7d');
+  getCoinData(coinId) {
+    return this.http.get('https://api.coinranking.com/v1/public/coin/' + coinId + '/history/5y?base=EUR');
   }
 }
