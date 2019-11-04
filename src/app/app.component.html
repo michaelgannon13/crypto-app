@@ -21,15 +21,15 @@
         placeholder="how many"
         (change)="selectQuantity($event.target.value)">
     </div>
-    <button type="button" class="submit-btn" type="submit" (click)="calculate()">Calculate</button>
+    <button type="button" class="submit-btn" type="submit" (click)="calculateReturn()">Calculate gain/loss</button>
     <p>
       You bought {{selectedQuantity}} {{selectedCoin}} on {{selectedDate}}
     </p>
-    <p *ngIf="percentageDifference">
-      Percentage difference is {{percentageDifference}}%
+    <p *ngIf="returnPercent">
+      Percentage difference is {{returnPercent}}%
     </p>
-    <p *ngIf="priceResult">
-      Price difference is €{{priceResult}}
+    <p *ngIf="returnPrice">
+      Price difference is €{{returnPrice}}
     </p>
 </div>
 <router-outlet></router-outlet>

@@ -8,8 +8,7 @@ import { CoinsService } from './services/coins/coins.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'crypto-app';
-  coinRes;
+  coinResponse;
   coins;
   selectedCoin = 'BTC';
   selectedCoinId = 0;
@@ -17,97 +16,82 @@ export class AppComponent {
   selectedQuantity = '0';
   coinData;
 
-  coinPriceToday;
-  coinPriceWhenPurchased;
-  coinTimeToday;
+  actualCoinPrice;
+  purchasedCoinPrice;
   selectedDateStamp;
-  percentageDifference;
-  priceResult;
+  returnPercent;
+  returnPrice;
 
   constructor(
       private priceService: GetPricesService,
       private coinsService: CoinsService
   ) { }
 
-  selectCoin(selectCoin, selectCoinId) {
-    this.selectedCoin = selectCoin;
-    this.selectedCoinId = selectCoinId;
-  }
-
-  selectDate(selectDate) {
-    this.selectedDate = selectDate;
-  }
-
-  selectQuantity(selectQuantity) {
-    this.selectedQuantity = selectQuantity;
-  }
-
-  toTimestamp(strDate) {
-    const datum = Date.parse(strDate);
-    return datum / 1000;
-   }
-
-   calculatePricePercentageDifference(purchasePrice, actualPrice) {
-     const diff = ((purchasePrice - actualPrice) / (purchasePrice)) * 100;
-     return diff;
-   }
-
-   calculatePriceDifference(coinQuantity, purchasePrice, actualPrice) {
-     const result = ((purchasePrice * coinQuantity) - (actualPrice * coinQuantity));
-     console.log(result);
-
-     return result;
-   }
-
-  calculate() {
-
-    this.priceService.getCoinData(this.selectedCoinId)
-      .subscribe((res: any[]) => {
-        this.coinData = res;
-        console.log('coin data is ', this.coinData);
-
-        // gets last item in last array
-        const lastItem = this.coinData.data.history.pop();
-        // gets last items price
-        this.coinPriceToday = lastItem.price;
-        // gets last items timestamp
-        this.coinTimeToday = lastItem.timestamp;
-        // coverts selected date to timestamp
-        this.selectedDateStamp = this.toTimestamp(this.selectedDate);
-
-        const allHistory = this.coinData.data.history;
-
-        for (let key = 0; key < allHistory.length; key ++ ) {
-
-          let found;
-
-          if (allHistory[key].timestamp === this.selectedDateStamp * 1000) {
-            found = allHistory[key];
-
-            this.coinPriceWhenPurchased = found.price;
-
-            console.log('found is', found.timestamp, 'timestamp is', this.selectedDateStamp * 1000);
-            console.log('coin price at time of purchase ', this.coinPriceWhenPurchased);
-            console.log('coin price today ', this.coinPriceToday);
-          }
-        }
-
-        this.percentageDifference = this.calculatePricePercentageDifference(this.coinPriceWhenPurchased, this.coinPriceToday);
-        console.log('percentage difference is ', this.percentageDifference);
-
-        this.priceResult = this.calculatePriceDifference(this.selectedQuantity, this.coinPriceWhenPurchased, this.coinPriceToday);
-        console.log('price difference is ', this.priceResult);
-
-      });
-  }
-
   // tslint:disable-next-line:use-life-cycle-interface
   ngOnInit() {
     this.coinsService.getCoins()
     .subscribe((res: any[]) => {
-      this.coinRes = res;
-      this.coins = this.coinRes.data.coins;
-      // console.log(this.coins);
+      this.coinResponse = res;
+      this.coins = this.coinResponse.data.coins;
     });
+  }
+
+  selectCoin(coinName, coinId) {
+    this.selectedCoin = coinName;
+    this.selectedCoinId = coinId;
+  }
+
+  selectDate(date) {
+    this.selectedDate = date;
+  }
+
+  selectQuantity(quantity) {
+    this.selectedQuantity = quantity;
+  }
+
+  toTimestamp(date) {
+    const timestamp = Date.parse(date);
+    return timestamp / 1000;
+   }
+
+  calculateReturnPercent(purchasePrice, actualPrice) {
+    const percentReturn: number = ((purchasePrice - actualPrice) / (purchasePrice)) * 100;
+    return percentReturn;
+  }
+
+  calculateReturnPrice(purchasePrice, actualPrice, coinQuantity) {
+    const priceReturn: number = ((purchasePrice * coinQuantity) - (actualPrice * coinQuantity));
+    return priceReturn;
+  }
+
+  calculateReturn() {
+    this.priceService.getCoinData(this.selectedCoinId)
+      .subscribe((res: any[]) => {
+        this.coinData = res;
+        // gets last item in last array
+        const lastItem = this.coinData.data.history.pop();
+        // gets last items price
+        this.actualCoinPrice = lastItem.price;
+        // coverts selected date to timestamp
+        this.selectedDateStamp = this.toTimestamp(this.selectedDate);
+
+        const coinHistory = this.coinData.data.history;
+
+        // tslint:disable-next-line:prefer-for-of
+        for (let i = 0; i < coinHistory.length; i ++ ) {
+
+          let actualItem;
+          if (coinHistory[i].timestamp === this.selectedDateStamp * 1000) {
+              actualItem = coinHistory[i];
+              this.purchasedCoinPrice = actualItem.price;
+            }
+          }
+
+        this.returnPercent = this.calculateReturnPercent(this.purchasedCoinPrice, this.actualCoinPrice);
+        console.log('percentage difference is ', this.returnPercent);
+
+        this.returnPrice = this.calculateReturnPrice(this.selectedQuantity, this.purchasedCoinPrice, this.actualCoinPrice);
+        console.log('price difference is ', this.returnPrice);
+      });
   }
 }
