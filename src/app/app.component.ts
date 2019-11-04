@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { GetPricesService } from './services/prices/get-prices.service';
 import { CoinsService } from './services/coins/coins.service';
+import Returns from './utils/returns';
 
 @Component({
   selector: 'app-root',
@@ -15,6 +16,7 @@ export class AppComponent {
   selectedDate = '07/04/1990';
   selectedQuantity = '0';
   coinData;
+  returns = new Returns();
 
   actualCoinPrice;
   purchasedCoinPrice;
@@ -49,21 +51,6 @@ export class AppComponent {
     this.selectedQuantity = quantity;
   }
 
-  toTimestamp(date) {
-    const timestamp = Date.parse(date);
-    return timestamp / 1000;
-   }
-
-  calculateReturnPercent(purchasePrice, actualPrice) {
-    const percentReturn: number = ((purchasePrice - actualPrice) / (purchasePrice)) * 100;
-    return percentReturn;
-  }
-
-  calculateReturnPrice(purchasePrice, actualPrice, coinQuantity) {
-    const priceReturn: number = ((purchasePrice * coinQuantity) - (actualPrice * coinQuantity));
-    return priceReturn;
-  }
-
   calculateReturn() {
     this.priceService.getCoinData(this.selectedCoinId)
       .subscribe((res: any[]) => {
@@ -73,7 +60,7 @@ export class AppComponent {
         // gets last items price
         this.actualCoinPrice = lastItem.price;
         // coverts selected date to timestamp
-        this.selectedDateStamp = this.toTimestamp(this.selectedDate);
+        this.selectedDateStamp = this.returns.toTimestamp(this.selectedDate);
 
         const coinHistory = this.coinData.data.history;
 
@@ -87,10 +74,10 @@ export class AppComponent {
             }
           }
 
-        this.returnPercent = this.calculateReturnPercent(this.purchasedCoinPrice, this.actualCoinPrice);
+        this.returnPercent = this.returns.calculateReturnPercent(this.purchasedCoinPrice, this.actualCoinPrice);
         console.log('percentage difference is ', this.returnPercent);
 
-        this.returnPrice = this.calculateReturnPrice(this.selectedQuantity, this.purchasedCoinPrice, this.actualCoinPrice);
+        this.returnPrice = this.returns.calculateReturnPrice(this.selectedQuantity, this.purchasedCoinPrice, this.actualCoinPrice);
         console.log('price difference is ', this.returnPrice);
       });
   }
