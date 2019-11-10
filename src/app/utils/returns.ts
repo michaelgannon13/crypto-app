@@ -5,13 +5,17 @@ export default class Returns {
     return timestamp / 1000;
    }
 
+   // it's happening here
   calculateReturnPercent(purchasePrice, actualPrice) {
-    const percentReturn: number = ((purchasePrice - actualPrice) / (purchasePrice)) * 100;
+    // const test = purchasePrice;
+    // console.log('this is', test);
+    const percentReturn = ((purchasePrice - actualPrice) / (purchasePrice)) * 100;
+    // alert(percentReturn);
     return percentReturn;
   }
 
   calculateReturnPrice(purchasePrice, actualPrice, coinQuantity) {
-    const priceReturn: number = ((purchasePrice * coinQuantity) - (actualPrice * coinQuantity));
+    const priceReturn = ((purchasePrice * coinQuantity) - (actualPrice * coinQuantity));
     return priceReturn;
   }
 }

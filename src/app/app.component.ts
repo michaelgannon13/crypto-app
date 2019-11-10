@@ -19,8 +19,8 @@ export class AppComponent {
   returns = new Returns();
 
   actualCoinPrice;
-  purchasedCoinPrice;
-  selectedDateStamp;
+  purchasedCoinPrice: any;
+  selectedDateStamp: any;
   returnPercent;
   returnPrice;
 
@@ -38,9 +38,9 @@ export class AppComponent {
     });
   }
 
-  selectCoin(coinName, coinId) {
-    this.selectedCoin = coinName;
-    this.selectedCoinId = coinId;
+  selectCoin(name, id) {
+    this.selectedCoin = name;
+    this.selectedCoinId = id;
   }
 
   selectDate(date) {
@@ -52,33 +52,30 @@ export class AppComponent {
   }
 
   calculateReturn() {
+
     this.priceService.getCoinData(this.selectedCoinId)
-      .subscribe((res: any[]) => {
-        this.coinData = res;
-        // gets last item in last array
-        const lastItem = this.coinData.data.history.pop();
-        // gets last items price
-        this.actualCoinPrice = lastItem.price;
-        // coverts selected date to timestamp
-        this.selectedDateStamp = this.returns.toTimestamp(this.selectedDate);
+    .subscribe((res: any[]) => {
+      this.coinData = res;
+      // gets last item in last array
+      const lastItem = this.coinData.data.history.pop();
+      // gets last items price
+      this.actualCoinPrice = lastItem.price;
+      // coverts selected date to timestamp
+      this.selectedDateStamp = this.returns.toTimestamp(this.selectedDate);
 
-        const coinHistory = this.coinData.data.history;
+      const coinHistory = this.coinData.data.history;
 
-        // tslint:disable-next-line:prefer-for-of
-        for (let i = 0; i < coinHistory.length; i ++ ) {
+      for (let i = 0; i < coinHistory.length; i ++ ) {
 
-          let actualItem;
-          if (coinHistory[i].timestamp === this.selectedDateStamp * 1000) {
+        let actualItem;
+        if (coinHistory[i].timestamp === this.selectedDateStamp * 1000) {
               actualItem = coinHistory[i];
               this.purchasedCoinPrice = actualItem.price;
             }
           }
 
         this.returnPercent = this.returns.calculateReturnPercent(this.purchasedCoinPrice, this.actualCoinPrice);
-        console.log('percentage difference is ', this.returnPercent);
-
         this.returnPrice = this.returns.calculateReturnPrice(this.selectedQuantity, this.purchasedCoinPrice, this.actualCoinPrice);
-        console.log('price difference is ', this.returnPrice);
       });
   }
 }
