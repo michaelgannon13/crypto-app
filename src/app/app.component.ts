@@ -14,15 +14,15 @@ export class AppComponent {
   selectedCoin = 'BTC';
   selectedCoinId = 0;
   selectedDate = '07/04/1990';
-  selectedQuantity = '0';
+  selectedQuantity = 0;
   coinData;
-  returns = new Returns();
-
-  actualCoinPrice;
-  purchasedCoinPrice: any;
+  actualCoinPrice = 0;
+  purchasedCoinPrice = 0;
   selectedDateStamp: any;
-  returnPercent;
-  returnPrice;
+  returnPercent = 0;
+  returnPrice = 0;
+
+  returns = new Returns();
 
   constructor(
       private priceService: GetPricesService,
@@ -65,6 +65,7 @@ export class AppComponent {
 
       const coinHistory = this.coinData.data.history;
 
+      // tslint:disable-next-line:prefer-for-of
       for (let i = 0; i < coinHistory.length; i ++ ) {
 
         let actualItem;
@@ -74,8 +75,8 @@ export class AppComponent {
             }
           }
 
-        this.returnPercent = this.returns.calculateReturnPercent(this.purchasedCoinPrice, this.actualCoinPrice);
-        this.returnPrice = this.returns.calculateReturnPrice(this.selectedQuantity, this.purchasedCoinPrice, this.actualCoinPrice);
+      this.returnPercent = this.returns.calculateReturnPercent(this.purchasedCoinPrice, this.actualCoinPrice);
+      this.returnPrice = this.returns.calculateReturnPrice(this.selectedQuantity, this.purchasedCoinPrice, this.actualCoinPrice);
       });
   }
 }
