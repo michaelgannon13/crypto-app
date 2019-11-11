@@ -23,13 +23,10 @@
     </div>
     <button type="button" class="submit-btn" type="submit" (click)="calculateReturn()">Calculate gain/loss</button>
     <p>
-      You bought {{selectedQuantity}} {{selectedCoin}} on {{selectedDate}}
+      You bought {{selectedQuantity}} {{selectedCoin}} on {{selectedDate}}.
     </p>
-    <p *ngIf="returnPercent">
-      Percentage difference is {{returnPercent}}%
-    </p>
-    <p *ngIf="returnPrice">
-      Price difference is €{{returnPrice}}
+    <p *ngIf="returnPrice && returnPrice">
+      Price difference is €{{returnPrice}} <span>({{returnPercent}}%)</span>
     </p>
 </div>
 <router-outlet></router-outlet>
