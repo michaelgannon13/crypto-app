@@ -15,10 +15,14 @@ export class AppComponent {
   returnPercent = 0;
   returnPrice = 0;
 
+  // default selection is BTC, ID = 1
   selectedCoin = 'BTC';
-  selectedCoinId = 0;
+  selectedCoinId = 1;
+
   selectedDate = '07/04/1990';
   selectedQuantity = 0;
+  selectedCurrency = 'EUR';
+  // USD EUR JPY BTC ETH etc.
 
   returns = new Returns();
 
@@ -42,8 +46,12 @@ export class AppComponent {
     this.selectedQuantity = quantityInput;
   }
 
+  selectCurrency(currencyInput: any) {
+    this.selectedCurrency = currencyInput;
+  }
+
   calculateReturn() {
-    this.priceService.getCoinData(this.selectedCoinId)
+    this.priceService.getCoinData(this.selectedCoinId, this.selectedCurrency)
     .subscribe((res: any[]) => {
       this.coinData = res;
       const lastItem = this.coinData.data.history.pop();

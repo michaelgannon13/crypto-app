@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { CoinSelectComponent } from './coin-select/coin-select.component';
 import { DateSelectComponent } from './date-select/date-select.component';
 import { QuantitySelectComponent } from './quantity-select/quantity-select.component';
+import { CurrencySelectComponent } from './currency-select/currency-select.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { QuantitySelectComponent } from './quantity-select/quantity-select.compo
     AppComponent,
     CoinSelectComponent,
     DateSelectComponent,
-    QuantitySelectComponent
+    QuantitySelectComponent,
+    CurrencySelectComponent
   ],
   imports: [
     BrowserModule,
