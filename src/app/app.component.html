@@ -1,26 +1,7 @@
 <div class="container">
-    <div class="coin">
-      <select (change)="selectCoin($event.target.label, $event.target.value)">
-        <option
-          *ngFor="let coin of coins"
-          [label]="coin.name"
-          [value]="coin.id"
-          >
-        </option>
-      </select>
-    </div>
-    <div class="date">
-      <input
-        type="date"
-        placeholder="what date"
-        (change)="selectDate($event.target.value)">
-    </div>
-    <div class="quantity">
-      <input
-        type="number"
-        placeholder="how many"
-        (change)="selectQuantity($event.target.value)">
-    </div>
+    <app-coin-select (coinSelect)="selectCoin($event)"></app-coin-select>
+    <app-date-select (dateSelect)="selectDate($event)"></app-date-select>
+    <app-quantity-select (quantitySelect)="selectQuantity($event)"></app-quantity-select>
     <button type="button" class="submit-btn" type="submit" (click)="calculateReturn()">Calculate gain/loss</button>
     <p>
       You bought {{selectedQuantity}} {{selectedCoin}} on {{selectedDate}}.
