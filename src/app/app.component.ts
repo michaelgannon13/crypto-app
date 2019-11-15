@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { GetPricesService } from './services/prices/get-prices.service';
-import { CoinsService } from './services/coins/coins.service';
 import Returns from './utils/returns';
 
 @Component({
@@ -9,12 +8,6 @@ import Returns from './utils/returns';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  coinResponse;
-  coins;
-  selectedCoin = 'BTC';
-  selectedCoinId = 0;
-  selectedDate = '07/04/1990';
-  selectedQuantity = 0;
   coinData;
   actualCoinPrice = 0;
   purchasedCoinPrice = 0;
@@ -22,59 +15,51 @@ export class AppComponent {
   returnPercent = 0;
   returnPrice = 0;
 
+  selectedCoin = 'BTC';
+  selectedCoinId = 0;
+  selectedDate = '07/04/1990';
+  selectedQuantity = 0;
+
   returns = new Returns();
 
   constructor(
-      private priceService: GetPricesService,
-      private coinsService: CoinsService
+      private priceService: GetPricesService
   ) { }
 
   // tslint:disable-next-line:use-life-cycle-interface
   ngOnInit() {
-    this.coinsService.getCoins()
-    .subscribe((res: any[]) => {
-      this.coinResponse = res;
-      this.coins = this.coinResponse.data.coins;
-    });
   }
 
-  selectCoin(name, id) {
-    this.selectedCoin = name;
-    this.selectedCoinId = id;
+  selectCoin(coinInput) {
+    this.selectedCoinId = coinInput;
   }
 
-  selectDate(date) {
-    this.selectedDate = date;
+  selectDate(dateInput: any) {
+    this.selectedDate = dateInput;
   }
 
-  selectQuantity(quantity) {
-    this.selectedQuantity = quantity;
+  selectQuantity(quantityInput: any) {
+    this.selectedQuantity = quantityInput;
   }
 
   calculateReturn() {
-
     this.priceService.getCoinData(this.selectedCoinId)
     .subscribe((res: any[]) => {
       this.coinData = res;
-      // gets last item in last array
       const lastItem = this.coinData.data.history.pop();
-      // gets last items price
       this.actualCoinPrice = lastItem.price;
-      // coverts selected date to timestamp
       this.selectedDateStamp = this.returns.toTimestamp(this.selectedDate);
-
       const coinHistory = this.coinData.data.history;
 
       // tslint:disable-next-line:prefer-for-of
       for (let i = 0; i < coinHistory.length; i ++ ) {
 
-        let actualItem;
         if (coinHistory[i].timestamp === this.selectedDateStamp * 1000) {
-              actualItem = coinHistory[i];
-              this.purchasedCoinPrice = actualItem.price;
-            }
-          }
-
+            let actualItem;
+            actualItem = coinHistory[i];
+            this.purchasedCoinPrice = actualItem.price;
+        }
+      }
       this.returnPercent = this.returns.calculateReturnPercent(this.purchasedCoinPrice, this.actualCoinPrice);
       this.returnPrice = this.returns.calculateReturnPrice(this.selectedQuantity, this.purchasedCoinPrice, this.actualCoinPrice);
       });

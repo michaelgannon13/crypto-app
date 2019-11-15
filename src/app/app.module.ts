@@ -7,11 +7,17 @@ import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { CoinSelectComponent } from './coin-select/coin-select.component';
+import { DateSelectComponent } from './date-select/date-select.component';
+import { QuantitySelectComponent } from './quantity-select/quantity-select.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CoinSelectComponent,
+    DateSelectComponent,
+    QuantitySelectComponent
   ],
   imports: [
     BrowserModule,
