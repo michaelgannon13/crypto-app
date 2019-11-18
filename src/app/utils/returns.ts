@@ -5,12 +5,8 @@ export default class Returns {
     return timestamp / 1000;
    }
 
-   // it's happening here
   calculateReturnPercent(purchasePrice, actualPrice) {
-    // const test = purchasePrice;
-    // console.log('this is', test);
     const percentReturn = ((purchasePrice - actualPrice) / (purchasePrice)) * 100;
-    // alert(percentReturn);
     return percentReturn;
   }
 
