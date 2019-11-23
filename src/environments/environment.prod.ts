@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
+  baseUrl: 'https://api.coinranking.com',
+  allCoins: 'v1/public/coins'
 };
