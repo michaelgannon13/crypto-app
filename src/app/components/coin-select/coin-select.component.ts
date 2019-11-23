@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { CoinsService } from '../services/coins/coins.service';
+import { CoinsService } from '../../services/coins/coins.service';
 
 @Component({
   selector: 'app-coin-select',

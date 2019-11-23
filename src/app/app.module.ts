@@ -7,10 +7,10 @@ import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CoinSelectComponent } from './coin-select/coin-select.component';
-import { DateSelectComponent } from './date-select/date-select.component';
-import { QuantitySelectComponent } from './quantity-select/quantity-select.component';
-import { CurrencySelectComponent } from './currency-select/currency-select.component';
+import { CoinSelectComponent } from './components/coin-select/coin-select.component';
+import { DateSelectComponent } from './components/date-select/date-select.component';
+import { QuantitySelectComponent } from './components/quantity-select/quantity-select.component';
+import { CurrencySelectComponent } from './components/currency-select/currency-select.component';
 
 
 @NgModule({

@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import * as Currencies from '../../assets/data/currencies.json';
+import * as Currencies from '../../../assets/data/currencies.json';
 
 @Component({
   selector: 'app-currency-select',
