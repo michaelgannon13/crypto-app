@@ -78,6 +78,12 @@ export class AppComponent {
       }
       this.returnPercent = this.returns.calculateReturnPercent(this.purchasedCoinPrice, this.actualCoinPrice);
       this.returnPrice = this.returns.calculateReturnPrice(this.selectedQuantity, this.purchasedCoinPrice, this.actualCoinPrice);
+
+      if (this.returnPrice < 0) {
+        console.log('youve lost money because ', this.returnPrice, 'is negative');
+      } else {
+        console.log('youve made money because ', this.returnPrice, 'is positive');
+      }
       });
   }
 }
