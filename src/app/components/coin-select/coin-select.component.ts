@@ -23,7 +23,8 @@ export class CoinSelectComponent implements OnInit {
     });
   }
 
-  selectCoin(id) {
+  selectCoin(id, name) {
+    this.selectedCoin = name;
     this.coinSelect.emit(id);
   }
 }

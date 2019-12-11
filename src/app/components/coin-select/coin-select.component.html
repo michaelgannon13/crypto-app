@@ -9,9 +9,8 @@
       class="dropdown-item" href="#"
     >
       <span
-        [id]="coin.id"
         class="selected-coin"
-        (click)="selectCoin(coin.id)"
+        (click)="selectCoin(coin.id, coin.name)"
       >
         {{coin.name}}
       </span>
