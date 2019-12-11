@@ -10,6 +10,7 @@ export class CoinSelectComponent implements OnInit {
   coinResponse;
   coins;
   selectedCoin = 'Select Coin';
+  selectedCoinImage: any;
 
   @Output() coinSelect = new EventEmitter();
 
@@ -23,8 +24,9 @@ export class CoinSelectComponent implements OnInit {
     });
   }
 
-  selectCoin(id, name) {
+  selectCoin(id, name, image) {
     this.selectedCoin = name;
+    this.selectedCoinImage = image;
     this.coinSelect.emit(id);
   }
 }
