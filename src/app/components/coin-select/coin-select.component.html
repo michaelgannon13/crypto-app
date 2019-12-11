@@ -1,10 +1,20 @@
-<div class="coin">
-  <select (change)="selectCoin($event.target.value)">
-    <option
+<div class="dropdown">
+  <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    {{selectedCoin}}
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a
       *ngFor="let coin of coins"
-      [label]="coin.name"
-      [value]="coin.id"
+      [style.background]="'url('+coin.iconUrl+')'"
+      class="dropdown-item" href="#"
+    >
+      <span
+        [id]="coin.id"
+        class="selected-coin"
+        (click)="selectCoin(coin.id)"
       >
-    </option>
-  </select>
+        {{coin.name}}
+      </span>
+    </a>
+  </div>
 </div>

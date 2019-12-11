@@ -9,6 +9,7 @@ import { CoinsService } from '../../services/coins/coins.service';
 export class CoinSelectComponent implements OnInit {
   coinResponse;
   coins;
+  selectedCoin = 'Select Coin';
 
   @Output() coinSelect = new EventEmitter();
 
@@ -19,7 +20,6 @@ export class CoinSelectComponent implements OnInit {
     .subscribe((res: any[]) => {
       this.coinResponse = res;
       this.coins = this.coinResponse.data.coins;
-      console.log('coins', this.coins);
     });
   }
 
