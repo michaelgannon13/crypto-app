@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   baseUrl: 'https://api.coinranking.com',
-  allCoins: 'v1/public/coins'
+  allCoins: 'v1/public/coins?limit=100'
 };
 
 /*
