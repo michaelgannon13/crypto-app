@@ -10,7 +10,7 @@ export class CoinSelectComponent implements OnInit {
   coinResponse;
   coins;
   selectedCoin = 'Select Coin';
-  selectedCoinImage: any;
+  selectedCoinImage;
 
   @Output() coinSelect = new EventEmitter();
 
