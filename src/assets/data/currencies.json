@@ -10,9 +10,5 @@
   {
       "name": "Bitcoin",
       "code": "BTC"
-  },
-  {
-      "name": "Ethereum",
-      "code": "ETH"
   }
 ]

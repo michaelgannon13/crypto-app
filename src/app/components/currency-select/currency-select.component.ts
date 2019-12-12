@@ -8,16 +8,19 @@ import * as Currencies from '../../../assets/data/currencies.json';
 })
 export class CurrencySelectComponent implements OnInit {
 
-  @Output() currencySelect = new EventEmitter();
+  selectedCurrency = 'Select Currency';
   currencies: any = (Currencies as any).default;
+
+  @Output() currencySelect = new EventEmitter();
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  selectCurrency(currency) {
-    this.currencySelect.emit(currency);
+  selectCurrency(code, name) {
+    this.selectCurrency = name;
+    this.currencySelect.emit(code);
   }
 
 }

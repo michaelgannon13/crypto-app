@@ -1,10 +1,18 @@
-<div class="currency">
-  <select (change)="selectCurrency($event.target.value)">
-    <option
+  <div class="dropdown">
+  <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    {{selectedCurrency}}
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a
       *ngFor="let currency of currencies"
-      [value]="currency.code"
-      [label]="currency.name"
+      class="dropdown-item" href="#"
     >
-    </option>
-  </select>
+      <span
+        class="selected-currency"
+        (click)="selectCurrency(currency.code, currency.name)"
+      >
+        {{currency.name}}
+      </span>
+    </a>
+  </div>
 </div>
