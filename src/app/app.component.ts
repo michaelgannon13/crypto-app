@@ -50,18 +50,11 @@ export class AppComponent {
     this.selectedCurrency = currencyInput;
   }
 
-  // clearFormValues() {
-    // this.actualCoinPrice = 0;
-    // this.returnPercent = 0;
-    // this.returnPrice = 0;
-  // }
-
   calculateReturn() {
-    // this.clearFormValues();
-
     this.priceService.getCoinData(this.selectedCoinId, this.selectedCurrency)
     .subscribe((res: any[]) => {
       this.coinData = res;
+      // most recent price of coin
       const lastItem = this.coinData.data.history.pop();
       this.actualCoinPrice = lastItem.price;
       this.selectedDateStamp = this.returns.toTimestamp(this.selectedDate);
@@ -84,6 +77,6 @@ export class AppComponent {
       } else {
         console.log('youve made money because ', this.returnPrice, 'is positive');
       }
-      });
+    });
   }
 }

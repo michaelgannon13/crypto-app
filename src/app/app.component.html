@@ -5,7 +5,7 @@
     <app-coin-select (coinSelect)="selectCoin($event)"></app-coin-select>
     <app-date-select (dateSelect)="selectDate($event)"></app-date-select>
     <app-quantity-select (quantitySelect)="selectQuantity($event)"></app-quantity-select>
-    <button type="button" class="submit-btn" type="submit" (click)="calculateReturn()">Calculate gain/loss</button>
+    <button type="button" class="btn btn-warning submit-btn" type="submit" (click)="calculateReturn()">Calculate gain/loss</button>
     <p>
       You bought {{selectedQuantity}} {{selectedCoin}} on {{selectedDate}}.
     </p>
