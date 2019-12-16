@@ -1,18 +1,23 @@
 [
   {
       "name": "Euros",
-      "code": "EUR"
+      "code": "EUR",
+      "symbol": "€"
   },
   {
       "name": "Dollars",
-      "code": "USD"
+      "code": "USD",
+      "symbol": "$"
+
   },
   {
       "name": "Bitcoin",
-      "code": "BTC"
+      "code": "BTC",
+      "symbol": "BTC"
   },
   {
       "name": "Ethereum",
-      "code": "ETH"
+      "code": "ETH",
+      "symbol": "ETH"
   }
 ]

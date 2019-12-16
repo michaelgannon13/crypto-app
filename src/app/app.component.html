@@ -1,7 +1,7 @@
 <div class="container"
   [ngClass]="(returnPrice < 0) ? 'negative-return' : 'positive-return'"
   >
-    <app-currency-select (currencySelect)="selectCurrency($event)"></app-currency-select>
+    <app-currency-select (currencySelect)="selectCurrency($event)" (symbolSelect)="selectSymbol($event)"></app-currency-select>
     <app-coin-select (coinSelect)="selectCoin($event)"></app-coin-select>
     <app-date-select (dateSelect)="selectDate($event)"></app-date-select>
     <app-quantity-select (quantitySelect)="selectQuantity($event)"></app-quantity-select>
@@ -10,7 +10,7 @@
       You bought {{selectedQuantity}} {{selectedCoin}} on {{selectedDate}}.
     </p>
     <p *ngIf="returnPrice && returnPrice">
-      Price difference is €{{returnPrice}} <span>({{returnPercent}}%)</span>
+      Price difference is {{currencySymbol}}{{returnPrice}} <span>({{returnPercent}}%)</span>
     </p>
 </div>
 <router-outlet></router-outlet>

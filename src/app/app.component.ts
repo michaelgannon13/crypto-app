@@ -22,6 +22,8 @@ export class AppComponent {
   selectedDate = '07/04/1990';
   selectedQuantity = 0;
   selectedCurrency = 'EUR';
+  currencySymbol = '€';
+
   // USD EUR JPY BTC ETH etc.
 
   returns = new Returns();
@@ -46,8 +48,12 @@ export class AppComponent {
     this.selectedQuantity = quantityInput;
   }
 
-  selectCurrency(currencyInput: any) {
+  selectCurrency(currencyInput: any, currencySymbol) {
     this.selectedCurrency = currencyInput;
+  }
+
+  selectSymbol(currencySymbol) {
+    this.currencySymbol = currencySymbol;
   }
 
   calculateReturn() {
