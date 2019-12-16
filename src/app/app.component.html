@@ -6,11 +6,12 @@
     <button type="button" class="submit-btn" type="submit" (click)="calculateReturn()">Calculate gain/loss</button>
     <!-- pass inputs in - selectedQuantity.  selectedDate, selectedCoin, returnPrice, returnPercent -->
     <app-results-panel
-      returnPercent="returnPercent"
-      returnPrice="returnPrice"
-      selectedCoin="selectedCoin"
-      selectedDate="selectedDate"
-      selectedQuantity="selectedQuantity"
+      *ngIf="calculated"
+      returnPercent="{{returnPercent}}"
+      returnPrice="{{returnPrice}}"
+      selectedCoin="{{selectedCoin}}"
+      selectedDate="{{selectedDate}}"
+      selectedQuantity="{{selectedQuantity}}"
     ></app-results-panel>
 </div>
 <router-outlet></router-outlet>

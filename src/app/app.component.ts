@@ -14,14 +14,15 @@ export class AppComponent {
   selectedDateStamp: any;
   selectedCoinId = 1;
   selectedCurrency = 'EUR';
+  calculated = false;
   // USD EUR JPY BTC ETH etc.
 
-  @Input() returnPercent;
-  @Input() returnPrice;
-  @Input() selectedDate;
+  returnPercent;
+  returnPrice;
+  selectedDate;
   // default selection is BTC, ID = 1
-  @Input() selectedCoin;
-  @Input() selectedQuantity;
+  selectedCoin;
+  selectedQuantity;
 
   returns = new Returns();
 
@@ -50,6 +51,8 @@ export class AppComponent {
   }
 
   calculateReturn() {
+
+    this.calculated = true;
 
     // clear previous values
     this.priceService.getCoinData(this.selectedCoinId, this.selectedCurrency)

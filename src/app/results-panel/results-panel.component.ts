@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-results-panel',
@@ -7,12 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ResultsPanelComponent implements OnInit {
 
-  returnPercent;
-  returnPrice;
-  selectedDate;
+
+  @Input() returnPercent;
+  @Input() returnPrice;
+  @Input() selectedDate;
   // default selection is BTC, ID = 1
-  selectedCoin;
-  selectedQuantity;
+  @Input() selectedCoin;
+  @Input() selectedQuantity;
 
   constructor() { }
 
