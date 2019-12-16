@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { CoinsService } from '../services/coins/coins.service';
+import { CoinsService } from '../../services/coins/coins.service';
 
 @Component({
   selector: 'app-coin-select',
@@ -9,6 +9,8 @@ import { CoinsService } from '../services/coins/coins.service';
 export class CoinSelectComponent implements OnInit {
   coinResponse;
   coins;
+  selectedCoin = 'Select Coin';
+  selectedCoinImage;
 
   @Output() coinSelect = new EventEmitter();
 
@@ -19,11 +21,12 @@ export class CoinSelectComponent implements OnInit {
     .subscribe((res: any[]) => {
       this.coinResponse = res;
       this.coins = this.coinResponse.data.coins;
-      console.log('coins', this.coins);
     });
   }
 
-  selectCoin(id) {
+  selectCoin(id, name, image) {
+    this.selectedCoin = name;
+    this.selectedCoinImage = image;
     this.coinSelect.emit(id);
   }
 }

@@ -1,0 +1,11 @@
+<div class="currency">
+  <select (change)="selectCurrency($event.target.value, $event.target.id)">
+    <option
+      *ngFor="let currency of currencies"
+      [value]="currency.symbol"
+      [label]="currency.name"
+      [id]="currency.code"
+    >
+    </option>
+  </select>
+</div>

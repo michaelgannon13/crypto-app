@@ -1,0 +1,20 @@
+<div class="dropdown">
+  <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <img class="coin-image" src="{{selectedCoinImage}}" alt="">
+    {{selectedCoin}}
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a
+      *ngFor="let coin of coins"
+      [style.background]="'url('+coin.iconUrl+')'"
+      class="dropdown-item" href="#"
+    >
+      <span
+        class="selected-coin"
+        (click)="selectCoin(coin.id, coin.name, coin.iconUrl)"
+      >
+        {{coin.name}}
+      </span>
+    </a>
+  </div>
+</div>
