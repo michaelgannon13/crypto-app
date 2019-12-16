@@ -11,7 +11,7 @@ import { CoinSelectComponent } from './components/coin-select/coin-select.compon
 import { DateSelectComponent } from './components/date-select/date-select.component';
 import { QuantitySelectComponent } from './components/quantity-select/quantity-select.component';
 import { CurrencySelectComponent } from './components/currency-select/currency-select.component';
-
+import { ResultsPanelComponent } from './components/results-panel/results-panel.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +19,8 @@ import { CurrencySelectComponent } from './components/currency-select/currency-s
     CoinSelectComponent,
     DateSelectComponent,
     QuantitySelectComponent,
-    CurrencySelectComponent
+    CurrencySelectComponent,
+    ResultsPanelComponent
   ],
   imports: [
     BrowserModule,

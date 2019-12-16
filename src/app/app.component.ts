@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { GetPricesService } from './services/prices/get-prices.service';
 import Returns from './utils/returns';
 
@@ -12,19 +12,19 @@ export class AppComponent {
   actualCoinPrice = 0;
   purchasedCoinPrice = 0;
   selectedDateStamp: any;
-  returnPercent = 0;
-  returnPrice = 0;
-
-  // default selection is BTC, ID = 1
-  selectedCoin = 'BTC';
   selectedCoinId = 1;
-
-  selectedDate = '07/04/1990';
-  selectedQuantity = 0;
   selectedCurrency = 'EUR';
+  calculated = false;
   currencySymbol = '€';
 
   // USD EUR JPY BTC ETH etc.
+
+  returnPercent;
+  returnPrice;
+  selectedDate;
+  // default selection is BTC, ID = 1
+  selectedCoin;
+  selectedQuantity;
 
   returns = new Returns();
 
@@ -57,6 +57,10 @@ export class AppComponent {
   }
 
   calculateReturn() {
+
+    this.calculated = true;
+
+    // clear previous values
     this.priceService.getCoinData(this.selectedCoinId, this.selectedCurrency)
     .subscribe((res: any[]) => {
       this.coinData = res;

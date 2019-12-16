@@ -1,0 +1,6 @@
+<p>
+  You bought {{selectedQuantity}} {{selectedCoin}} on {{selectedDate}}.
+</p>
+<p *ngIf="returnPrice && returnPrice">
+  Price difference is €{{returnPrice}} <span>({{returnPercent}}%)</span>
+</p>
