@@ -14,6 +14,7 @@ export class ResultsPanelComponent implements OnInit {
   // default selection is BTC, ID = 1
   @Input() selectedCoin;
   @Input() selectedQuantity;
+  @Input() selectedCurrency;
 
   constructor() { }
 
