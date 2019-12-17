@@ -9,7 +9,11 @@ export class ConfettiComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-  }
+  divs = [];
 
+  ngOnInit() {
+    for (let i = 0; i < 149; i++) {
+      this.divs.push(i);
+    }
+  }
 }
