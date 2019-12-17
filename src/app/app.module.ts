@@ -12,6 +12,7 @@ import { DateSelectComponent } from './components/date-select/date-select.compon
 import { QuantitySelectComponent } from './components/quantity-select/quantity-select.component';
 import { CurrencySelectComponent } from './components/currency-select/currency-select.component';
 import { ResultsPanelComponent } from './components/results-panel/results-panel.component';
+import { ConfettiComponent } from './confetti/confetti.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ResultsPanelComponent } from './components/results-panel/results-panel.
     DateSelectComponent,
     QuantitySelectComponent,
     CurrencySelectComponent,
-    ResultsPanelComponent
+    ResultsPanelComponent,
+    ConfettiComponent
   ],
   imports: [
     BrowserModule,
