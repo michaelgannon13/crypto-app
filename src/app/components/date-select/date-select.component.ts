@@ -17,6 +17,6 @@ export class DateSelectComponent implements OnInit {
 
   selectDate(date) {
     this.selectedDate = date;
-    this.dateSelect.emit(this.selectedDate)
+    this.dateSelect.emit(this.selectedDate);
   }
 }

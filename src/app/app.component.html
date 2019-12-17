@@ -8,12 +8,11 @@
     <button type="button" class="btn btn-warning submit-btn" type="submit" (click)="calculateReturn()">Calculate gain/loss</button>
     <app-results-panel
       *ngIf="calculated"
-      returnPercent="{{returnPercent}}"
-      returnPrice="{{returnPrice}}"
-      selectedCoin="{{selectedCoin}}"
-      selectedDate="{{selectedDate}}"
-      selectedCurrency="{{currencySymbol}}"
-      selectedQuantity="{{selectedQuantity}}"
+      [returnPercent]="returnPercent"
+      [returnPrice]="returnPrice"
+      [selectedCoin]="selectedCoin"
+      [selectedDate]="selectedDate"
+      [selectedCurrency]="currencySymbol"
+      [selectedQuantity]="selectedQuantity"
     ></app-results-panel>
 </div>
-<router-outlet></router-outlet>

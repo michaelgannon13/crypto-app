@@ -16,8 +16,6 @@ export class QuantitySelectComponent implements OnInit {
   }
 
   selectQuantity(quantity) {
-    // const test = quantity;
     this.quantitySelect.emit(quantity);
   }
-
 }
