@@ -1,0 +1,3 @@
+- Infinity sign appearing for percentage value
+- Maths not always correct (biggest issue)
+- Changing currency and re-calculating doesn't update value
