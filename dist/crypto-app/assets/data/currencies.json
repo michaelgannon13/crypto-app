@@ -1,0 +1,23 @@
+[
+  {
+      "name": "Euros",
+      "code": "EUR",
+      "symbol": "€"
+  },
+  {
+      "name": "Dollars",
+      "code": "USD",
+      "symbol": "$"
+
+  },
+  {
+      "name": "Bitcoin",
+      "code": "BTC",
+      "symbol": "BTC"
+  },
+  {
+      "name": "Ethereum",
+      "code": "ETH",
+      "symbol": "ETH"
+  }
+]

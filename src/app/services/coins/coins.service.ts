@@ -9,7 +9,7 @@ export class CoinsService {
 
   constructor(private http: HttpClient) { }
 
-  getCoins(){
+  getCoins() {
     return this.http.get(`${environment.baseUrl}/${environment.allCoins}`);
   }
 }
