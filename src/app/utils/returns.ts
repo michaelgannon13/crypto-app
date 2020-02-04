@@ -1,16 +1,17 @@
 export default class Returns {
 
   toTimestamp(date) {
-    const timestamp = Date.parse(date);
-    return timestamp / 1000;
+    return new Date(date).getTime();
    }
 
-  calculateReturnPercent(purchasePrice, actualPrice) {
-    const percentReturn = ((purchasePrice - actualPrice) / (purchasePrice)) * 100;
+  calculateReturnPercent(purchasePrice: number, actualPrice: number) {
+    const percentReturn = (
+      Math.abs(Number(purchasePrice) - Number(actualPrice)) /
+      ((Number(purchasePrice) + Number(actualPrice)) / 2)) * 100;
     return percentReturn;
   }
 
-  calculateReturnPrice(purchasePrice, actualPrice, coinQuantity) {
+  calculateReturnPrice(coinQuantity, purchasePrice, actualPrice) {
     const priceReturn = ((purchasePrice * coinQuantity) - (actualPrice * coinQuantity));
     return priceReturn;
   }

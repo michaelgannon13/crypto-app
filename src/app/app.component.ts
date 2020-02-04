@@ -62,7 +62,7 @@ export class AppComponent {
 
     // clear previous values
     this.priceService.getCoinData(this.selectedCoinId, this.selectedCurrency)
-    .subscribe((res: any[]) => {
+    .subscribe((res: any) => {
       this.coinData = res;
       // most recent price of coin
       const lastItem = this.coinData.data.history.pop();
@@ -70,15 +70,9 @@ export class AppComponent {
       this.selectedDateStamp = this.returns.toTimestamp(this.selectedDate);
       const coinHistory = this.coinData.data.history;
 
-      // tslint:disable-next-line:prefer-for-of
-      for (let i = 0; i < coinHistory.length; i ++ ) {
+      const elementHistory = coinHistory.find((elem) => elem.timestamp === this.selectedDateStamp);
+      this.purchasedCoinPrice = elementHistory.price;
 
-        if (coinHistory[i].timestamp === this.selectedDateStamp * 1000) {
-            let actualItem;
-            actualItem = coinHistory[i];
-            this.purchasedCoinPrice = actualItem.price;
-        }
-      }
       this.returnPercent = this.returns.calculateReturnPercent(this.purchasedCoinPrice, this.actualCoinPrice);
       this.returnPrice = this.returns.calculateReturnPrice(this.selectedQuantity, this.purchasedCoinPrice, this.actualCoinPrice);
 
