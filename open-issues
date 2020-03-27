@@ -1,3 +1,18 @@
-- Infinity sign appearing for percentage value
-- Maths not always correct (biggest issue)
 - Changing currency and re-calculating doesn't update value
+  - Changing currency should recalculate the result values   
+  
+- Test maths to ensure it is correct using values from https://coinranking.com/ e.g. calculate the difference between today's bitcoin price and what it was a year ago
+
+- Round currency result value up to 2 decimal places and round percentage value up to zero decimal places
+
+- Add nice date picker
+
+- Add nice quantity slider
+
+- Match currency dropdown to be the same (Bootstrap) as the cryptocurrency dropdown 
+
+- Refactor SCSS
+
+- Anything else
+
+
