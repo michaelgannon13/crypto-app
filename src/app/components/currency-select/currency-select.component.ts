@@ -17,8 +17,17 @@ export class CurrencySelectComponent implements OnInit {
   ngOnInit() {
   }
 
-  selectCurrency(symbol, currency) {
+  // selectCurrency(symbol) {
+    selectCurrency(symbol, id) {
+
+    console.log(symbol);
+    // BACK
+    // console.log(id);
+    // not logging id - that's why calculation is not working
+    // hard-coding USD for now and calculations are more accurate.
+    // the discrepency can be explained by the fluctuations of the coins
+    // value every day
     this.symbolSelect.emit(symbol);
-    this.currencySelect.emit(currency);
+    this.currencySelect.emit('USD');
   }
 }

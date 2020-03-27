@@ -8,10 +8,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 export class DateSelectComponent implements OnInit {
   selectedDate = '07/04/1990';
   @Output() dateSelect = new EventEmitter();
-
-
   constructor() { }
-
   ngOnInit() {
   }
 

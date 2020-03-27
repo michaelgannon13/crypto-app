@@ -1,0 +1,2 @@
+- Problem not with select coin component or even emitter
+- Part of problem is currency selector so it's hard-coded as USD for now

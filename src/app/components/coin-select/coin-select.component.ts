@@ -21,6 +21,8 @@ export class CoinSelectComponent implements OnInit {
     .subscribe((res: any[]) => {
       this.coinResponse = res;
       this.coins = this.coinResponse.data.coins;
+      console.log(this.coinResponse);
+
     });
   }
 

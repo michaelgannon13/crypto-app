@@ -7,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ResultsPanelComponent implements OnInit {
 
-
+// TODO: change Inputs to ng-content
   @Input() returnPercent;
   @Input() returnPrice;
   @Input() selectedDate;

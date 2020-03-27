@@ -8,10 +8,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 export class QuantitySelectComponent implements OnInit {
 
   @Output() quantitySelect = new EventEmitter();
-
-
   constructor() { }
-
   ngOnInit() {
   }
 
