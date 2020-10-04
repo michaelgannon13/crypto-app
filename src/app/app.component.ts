@@ -10,15 +10,19 @@ import Returns from './utils/returns';
 export class AppComponent {
   returns = new Returns();
 
-  selectedCoinId: number = 1;
-  selectedCurrency: string = 'USD';
-  calculated: boolean = false;
-  currencySymbol: string = '$';
-  returnPercent: number;
-  returnPrice: number;
+  coinData;
+  actualCoinPrice = 0;
+  purchasedCoinPrice = 0;
+  selectedDateStamp: any;
+  selectedCoinId = 1;
+  selectedCurrency = 'USD';
+  calculated = false;
+  currencySymbol = '$';
+  returnPercent;
+  returnPrice;
   selectedDate;
-  selectedCoin: string;
-  selectedQuantity: number;
+  selectedCoin;
+  selectedQuantity;
 
 
   constructor(
@@ -41,25 +45,47 @@ export class AppComponent {
     this.selectedQuantity = quantityInput;
   }
 
+  // selectCurrency(currencyInput: any, currencySymbol) {
+  //   this.selectedCurrency = currencyInput;
+  //   console.log(  this.selectedCurrency);
+  // }
+
+  selectSymbol(currencySymbol) {
+    this.currencySymbol = currencySymbol;
+  }
+
   calculateReturn() {
     this.calculated = true;
 
     // clear previous values
     this.priceService.getCoinData(this.selectedCoinId, this.selectedCurrency)
     .subscribe((res: any) => {
-      const coinHistory = res.data.history;
+      this.coinData = res;
+      const coinHistory = this.coinData.data.history;
 
+      // MOST RECENT STUFF
       // most recent price of coin - right now down to hour - this can cause slight discrepency
-      const actualCoinPrice = coinHistory.pop().price;
+      this.actualCoinPrice = this.coinData.data.history.pop().price;
 
-      const selectedDateStamp = this.returns.toTimestamp(this.selectedDate);
 
+
+      // CONVERSIONS
+      // converts selected date into time stamp
+      this.selectedDateStamp = this.returns.toTimestamp(this.selectedDate);
+
+
+
+      // PRICES WHEN THEY WERE PURCHASED
       // elementHistory is the price the coin was on the date selected
-      const elementHistory = coinHistory.find((elem) => elem.timestamp === selectedDateStamp);
-      const purchasedCoinPrice = elementHistory.price;
+      const elementHistory = coinHistory.find((elem) => elem.timestamp === this.selectedDateStamp);
+      this.purchasedCoinPrice = elementHistory.price;
 
-      this.returnPercent = this.returns.calculateReturnPercent(purchasedCoinPrice, actualCoinPrice);
-      this.returnPrice = this.returns.calculateReturnPrice(this.selectedQuantity, purchasedCoinPrice, actualCoinPrice);
+
+
+
+      /// FINAL CALCULATION
+      this.returnPercent = this.returns.calculateReturnPercent(this.purchasedCoinPrice, this.actualCoinPrice);
+      this.returnPrice = this.returns.calculateReturnPrice(this.selectedQuantity, this.purchasedCoinPrice, this.actualCoinPrice);
 
     });
   }
